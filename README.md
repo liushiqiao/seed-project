@@ -28,10 +28,10 @@
 
 ####  还提供了配套视频讲解
 
+[网易云课堂获取视频](https://study.163.com/course/introduction.htm?share=2&shareId=480000002172852&courseId=1209674835&_trace_c_p_k2_=69ae6b3d440249759ad085487f89f73a)
+
 ![](https://gitee.com/yingxue985/company-frame/raw/master/src/main/resources/static/images/class/18.jpg) 
 ![](https://gitee.com/yingxue985/company-frame/raw/master/src/main/resources/static/images/class/17.jpg) 
-
-[网易云课堂获取视频](https://study.163.com/course/introduction.htm?share=2&shareId=480000002172852&courseId=1209674835&_trace_c_p_k2_=69ae6b3d440249759ad085487f89f73a)
 
 ![](https://gitee.com/yingxue985/company-frame/raw/master/src/main/resources/static/images/class/15.jpg) 
 ![](https://gitee.com/yingxue985/company-frame/raw/master/src/main/resources/static/images/class/14.jpg) 
