@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 /**
 * @ClassName:       返回菜单对应的视图html   有少部分需要返回页面生成的数据在这里
 *                   TODO:类文件简单描述
-* @Author:          小霍
+* @Author:          lsq
 * @CreateDate:      2019/10/25 17:06
-* @UpdateUser:      小霍
+* @UpdateUser:      lsq
 * @UpdateDate:      2019/10/25 17:06
 * @Version:         0.0.1
 */
@@ -32,7 +32,7 @@ public class IndexController {
     }
     /**
      * 进入首页
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/10/25 17:17
      * @UpdateUser:
      * @UpdateDate:  2019/10/25 17:17
@@ -48,7 +48,7 @@ public class IndexController {
     }
     /**
      * 更改密码页面
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/10/25 17:19
      * @UpdateUser:
      * @UpdateDate:  2019/10/25 17:19
@@ -63,7 +63,7 @@ public class IndexController {
     }
     /**
      * 用户编辑个人信息 视图
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/10/29 10:38
      * @UpdateUser:
      * @UpdateDate:  2019/10/29 10:38
@@ -79,7 +79,7 @@ public class IndexController {
     }
     /**
      * 菜单权限列表  视图
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/10/29 10:38
      * @UpdateUser:
      * @UpdateDate:  2019/10/29 10:38
@@ -95,7 +95,7 @@ public class IndexController {
     }
     /**
      * 角色列表 操作视图
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/10/29 10:38
      * @UpdateUser:
      * @UpdateDate:  2019/10/29 10:38
@@ -110,7 +110,7 @@ public class IndexController {
     }
     /**
      * 用户列表操作 视图
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/10/29 10:37
      * @UpdateUser:
      * @UpdateDate:  2019/10/29 10:37
@@ -125,7 +125,7 @@ public class IndexController {
     }
     /**
      * 系统操作日志 视图
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/10/29 10:37
      * @UpdateUser:
      * @UpdateDate:  2019/10/29 10:37
@@ -140,7 +140,7 @@ public class IndexController {
     }
     /**
      * 组织机构列表 试图
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/10/29 10:36
      * @UpdateUser:
      * @UpdateDate:  2019/10/29 10:36
@@ -176,5 +176,10 @@ public class IndexController {
     @GetMapping("/about")
     public String about(){
         return "about";
+    }
+
+    @GetMapping("/upload")
+    public String uploadFile(){
+        return "upload/uploadFile";
     }
 }

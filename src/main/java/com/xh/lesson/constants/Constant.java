@@ -3,9 +3,9 @@ package com.xh.lesson.constants;
 /**
  * @ClassName: Constant
  * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/6 23:30
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/6 23:30
  * @Version: 0.0.1
  */

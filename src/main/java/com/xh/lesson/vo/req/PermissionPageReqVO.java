@@ -6,9 +6,9 @@ import lombok.Data;
 /**
  * @ClassName: PermissionPageReqVO
  * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/20 13:59
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/20 13:59
  * @Version: 0.0.1
  */

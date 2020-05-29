@@ -30,10 +30,10 @@ import java.util.Collection;
 
 /**
  * @ClassName: CustomAccessControlFilter
- * TODO:类文件简单描述
- * @Author: 小霍
+ * @desc    用户认证步骤
+ * @Author: lsq
  * @CreateDate: 2019/9/6 23:22
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/6 23:22
  * @Version: 0.0.1
  */

@@ -23,9 +23,9 @@ import java.util.Map;
 /**
  * @ClassName: JwtTokenUtil
  * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/6 23:49
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/6 23:49
  * @Version: 0.0.1
  */
@@ -47,7 +47,7 @@ public class JwtTokenUtil {
     }
     /**
      * 生成 access_token
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/26 10:22
      * @UpdateUser:
      * @UpdateDate:  2019/9/26 10:22
@@ -58,12 +58,11 @@ public class JwtTokenUtil {
      * @throws
      */
     public static String getAccessToken(String subject,Map<String,Object> claims){
-
         return generateToken(issuer,subject,claims,accessTokenExpireTime.toMillis(),secretKey);
     }
     /**
      * 生产 App端 refresh_token
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/26 10:24
      * @UpdateUser:
      * @UpdateDate:  2019/9/26 10:24
@@ -79,7 +78,7 @@ public class JwtTokenUtil {
 
     /**
      * 生产 PC refresh_token
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/26 10:24
      * @UpdateUser:
      * @UpdateDate:  2019/9/26 10:24
@@ -94,7 +93,7 @@ public class JwtTokenUtil {
     }
     /**
      * 签发token
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/7 20:42
      * @UpdateUser:
      * @UpdateDate:  2019/9/7 20:42
@@ -136,7 +135,7 @@ public class JwtTokenUtil {
     }
     /**
      * 获取用户id
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/7 17:29
      * @UpdateUser:
      * @UpdateDate:  2019/9/7 17:29
@@ -157,7 +156,7 @@ public class JwtTokenUtil {
     }
     /**
      * 获取用户名
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/23 15:39
      * @UpdateUser:
      * @UpdateDate:  2019/9/23 15:39
@@ -179,7 +178,7 @@ public class JwtTokenUtil {
     }
     /**
      * 从令牌中获取数据声明
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/7 21:21
      * @UpdateUser:
      * @UpdateDate:  2019/9/7 21:21
@@ -199,7 +198,7 @@ public class JwtTokenUtil {
     }
     /**
      * 校验令牌
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/7 22:15
      * @UpdateUser:
      * @UpdateDate:  2019/9/7 22:15
@@ -214,7 +213,7 @@ public class JwtTokenUtil {
     }
     /**
      * 验证token 是否过期
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/7 21:27
      * @UpdateUser:
      * @UpdateDate:  2019/9/7 21:27
@@ -237,7 +236,7 @@ public class JwtTokenUtil {
     }
     /**
      * 刷新token
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/7 22:14
      * @UpdateUser:
      * @UpdateDate:  2019/9/7 22:14
@@ -266,7 +265,7 @@ public class JwtTokenUtil {
     }
     /**
      * 获取token的剩余过期时间
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/7 22:19
      * @UpdateUser:
      * @UpdateDate:  2019/9/7 22:19

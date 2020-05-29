@@ -10,6 +10,7 @@ import com.xh.lesson.exception.code.BaseResponseCode;
 import com.xh.lesson.mapper.SysDeptMapper;
 import com.xh.lesson.mapper.SysUserMapper;
 import com.xh.lesson.service.*;
+import com.xh.lesson.utils.CookieUtils;
 import com.xh.lesson.utils.JwtTokenUtil;
 import com.xh.lesson.utils.PageUtils;
 import com.xh.lesson.utils.PasswordUtils;
@@ -33,9 +34,9 @@ import java.util.concurrent.TimeUnit;
 /**
  * @ClassName: UserServiceImpl
  * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/7 22:56
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/7 22:56
  * @Version: 0.0.1
  */
@@ -57,17 +58,18 @@ public class UserServiceImpl implements UserService {
     private TokenSettings tokenSettings;
     @Autowired
     private SysDeptMapper sysDeptMapper;
+
     @Override
     public String register(RegisterReqVO vo) {
-        SysUser sysUser=new SysUser();
-        BeanUtils.copyProperties(vo,sysUser);
+        SysUser sysUser = new SysUser();
+        BeanUtils.copyProperties(vo, sysUser);
         sysUser.setSalt(PasswordUtils.getSalt());
         String encode = PasswordUtils.encode(vo.getPassword(), sysUser.getSalt());
         sysUser.setPassword(encode);
         sysUser.setId(UUID.randomUUID().toString());
         sysUser.setCreateTime(new Date());
         int i = sysUserMapper.insertSelective(sysUser);
-        if (i!=1){
+        if (i != 1) {
             throw new BusinessException(BaseResponseCode.OPERATION_ERRO);
         }
         return sysUser.getId();
@@ -103,82 +105,82 @@ public class UserServiceImpl implements UserService {
         return respVO;
     }
 
-    private List<String> getRolesByUserId(String userId){
-       return  roleService.getRoleNames(userId);
+    private List<String> getRolesByUserId(String userId) {
+        return roleService.getRoleNames(userId);
     }
 
-    private Set<String>getPermissionsByUserId(String userId){
-        return  permissionService.getPermissionsByUserId(userId);
+    private Set<String> getPermissionsByUserId(String userId) {
+        return permissionService.getPermissionsByUserId(userId);
     }
 
     @Override
-    public String refreshToken(String refreshToken,String accessToken) {
+    public String refreshToken(String refreshToken, String accessToken) {
 
-        if(redisService.hasKey(Constant.JWT_ACCESS_TOKEN_BLACKLIST+refreshToken)||!JwtTokenUtil.validateToken(refreshToken)){
+        if (redisService.hasKey(Constant.JWT_ACCESS_TOKEN_BLACKLIST + refreshToken) || !JwtTokenUtil.validateToken(refreshToken)) {
             throw new BusinessException(BaseResponseCode.TOKEN_ERROR);
         }
-        String userId=JwtTokenUtil.getUserId(refreshToken);
-        log.info("userId={}",userId);
-        SysUser sysUser=sysUserMapper.selectByPrimaryKey(userId);
-        if (null==sysUser){
+        String userId = JwtTokenUtil.getUserId(refreshToken);
+        log.info("userId={}", userId);
+        SysUser sysUser = sysUserMapper.selectByPrimaryKey(userId);
+        if (null == sysUser) {
             throw new BusinessException(BaseResponseCode.TOKEN_PARSE_ERROR);
         }
-        Map<String,Object> claims=null;
+        Map<String, Object> claims = null;
 
-        if(redisService.hasKey(Constant.JWT_REFRESH_KEY+userId)){
-            claims=new HashMap<>();
-            claims.put(Constant.JWT_ROLES_KEY,getRolesByUserId(userId));
-            claims.put(Constant.JWT_PERMISSIONS_KEY,getPermissionsByUserId(userId));
+        if (redisService.hasKey(Constant.JWT_REFRESH_KEY + userId)) {
+            claims = new HashMap<>();
+            claims.put(Constant.JWT_ROLES_KEY, getRolesByUserId(userId));
+            claims.put(Constant.JWT_PERMISSIONS_KEY, getPermissionsByUserId(userId));
         }
-        String newAccessToken=JwtTokenUtil.refreshToken(refreshToken,claims);
+        String newAccessToken = JwtTokenUtil.refreshToken(refreshToken, claims);
 
-        redisService.setifAbsen(Constant.JWT_REFRESH_STATUS+accessToken,userId,1,TimeUnit.MINUTES);
+        redisService.setifAbsen(Constant.JWT_REFRESH_STATUS + accessToken, userId, 1, TimeUnit.MINUTES);
 
 
-        if(redisService.hasKey(Constant.JWT_REFRESH_KEY+userId)){
-            redisService.set(Constant.JWT_REFRESH_IDENTIFICATION+newAccessToken,userId,redisService.getExpire(Constant.JWT_REFRESH_KEY+userId,TimeUnit.MILLISECONDS),TimeUnit.MILLISECONDS);
+        if (redisService.hasKey(Constant.JWT_REFRESH_KEY + userId)) {
+            redisService.set(Constant.JWT_REFRESH_IDENTIFICATION + newAccessToken, userId, redisService.getExpire(Constant.JWT_REFRESH_KEY + userId, TimeUnit.MILLISECONDS), TimeUnit.MILLISECONDS);
         }
         return newAccessToken;
     }
 
     @Override
-    public void updateUserInfo(UserUpdateReqVO vo,String operationId) {
+    public void updateUserInfo(UserUpdateReqVO vo, String operationId) {
 
-        SysUser sysUser=sysUserMapper.selectByPrimaryKey(vo.getId());
-        if (null==sysUser){
-            log.error("传入 的 id:{}不合法",vo.getId());
+        SysUser sysUser = sysUserMapper.selectByPrimaryKey(vo.getId());
+        if (null == sysUser) {
+            log.error("传入 的 id:{}不合法", vo.getId());
             throw new BusinessException(BaseResponseCode.DATA_ERROR);
         }
-        BeanUtils.copyProperties(vo,sysUser);
+        BeanUtils.copyProperties(vo, sysUser);
         sysUser.setUpdateTime(new Date());
-        if(!StringUtils.isEmpty(vo.getPassword())){
-            String newPassword=PasswordUtils.encode(vo.getPassword(),sysUser.getSalt());
+        if (!StringUtils.isEmpty(vo.getPassword())) {
+            String newPassword = PasswordUtils.encode(vo.getPassword(), sysUser.getSalt());
             sysUser.setPassword(newPassword);
-        }else {
+        } else {
             sysUser.setPassword(null);
         }
         sysUser.setUpdateId(operationId);
-        int count= sysUserMapper.updateByPrimaryKeySelective(sysUser);
-        if (count!=1){
+        int count = sysUserMapper.updateByPrimaryKeySelective(sysUser);
+        if (count != 1) {
             throw new BusinessException(BaseResponseCode.OPERATION_ERRO);
         }
-        setUserOwnRole(sysUser.getId(),vo.getRoleIds());
-        if(vo.getStatus()==2){
-            redisService.set(Constant.ACCOUNT_LOCK_KEY+sysUser.getId(),sysUser.getId());
-        }else {
-            redisService.delete(Constant.ACCOUNT_LOCK_KEY+sysUser.getId());
+        setUserOwnRole(sysUser.getId(), vo.getRoleIds());
+        if (vo.getStatus() == 2) {
+            redisService.set(Constant.ACCOUNT_LOCK_KEY + sysUser.getId(), sysUser.getId());
+        } else {
+            redisService.delete(Constant.ACCOUNT_LOCK_KEY + sysUser.getId());
         }
 
     }
 
     @Override
     public PageVO<SysUser> pageInfo(UserPageReqVO vo) {
-        PageHelper.startPage(vo.getPageNum(),vo.getPageSize());
+        PageHelper.startPage(vo.getPageNum(), vo.getPageSize());
         List<SysUser> sysUsers = sysUserMapper.selectAll(vo);
-        if(!sysUsers.isEmpty()){
-            for (SysUser sysUser:sysUsers){
+        if (!sysUsers.isEmpty()) {
+            for (SysUser sysUser : sysUsers) {
                 SysDept sysDept = sysDeptMapper.selectByPrimaryKey(sysUser.getDeptId());
-                if (sysDept!=null){
+                if (sysDept != null) {
                     sysUser.setDeptName(sysDept.getName());
                 }
             }
@@ -193,28 +195,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PageVO<SysUser> selectUserInfoByDeptIds(int pageNum, int pageSize,List<String> deptIds) {
+    public PageVO<SysUser> selectUserInfoByDeptIds(int pageNum, int pageSize, List<String> deptIds) {
 
-        PageHelper.startPage(pageNum,pageSize);
-        List<SysUser> list=sysUserMapper.selectUserInfoByDeptIds(deptIds);
+        PageHelper.startPage(pageNum, pageSize);
+        List<SysUser> list = sysUserMapper.selectUserInfoByDeptIds(deptIds);
         return PageUtils.getPageVO(list);
     }
 
     @Override
     public void addUser(UserAddReqVO vo) {
-        SysUser sysUser=new SysUser();
-        BeanUtils.copyProperties(vo,sysUser);
+        SysUser sysUser = new SysUser();
+        BeanUtils.copyProperties(vo, sysUser);
         sysUser.setSalt(PasswordUtils.getSalt());
         String encode = PasswordUtils.encode(vo.getPassword(), sysUser.getSalt());
         sysUser.setPassword(encode);
         sysUser.setId(UUID.randomUUID().toString());
         sysUser.setCreateTime(new Date());
         int i = sysUserMapper.insertSelective(sysUser);
-        if (i!=1){
+        if (i != 1) {
             throw new BusinessException(BaseResponseCode.OPERATION_ERRO);
         }
-        if(null!=vo.getRoleIds()&&!vo.getRoleIds().isEmpty()){
-            UserRoleOperationReqVO reqVO=new UserRoleOperationReqVO();
+        if (null != vo.getRoleIds() && !vo.getRoleIds().isEmpty()) {
+            UserRoleOperationReqVO reqVO = new UserRoleOperationReqVO();
             reqVO.setUserId(sysUser.getId());
             reqVO.setRoleIds(vo.getRoleIds());
             userRoleService.addUserRoleInfo(reqVO);
@@ -223,47 +225,47 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void logout(String accessToken, String refreshToken) {
-        if(StringUtils.isEmpty(accessToken)||StringUtils.isEmpty(refreshToken)){
+        if (StringUtils.isEmpty(accessToken) || StringUtils.isEmpty(refreshToken)) {
             throw new BusinessException(BaseResponseCode.DATA_ERROR);
         }
         Subject subject = SecurityUtils.getSubject();
-        log.info("subject.getPrincipals()={}",subject.getPrincipals());
+        log.info("subject.getPrincipals()={}", subject.getPrincipals());
         if (subject.isAuthenticated()) {
             subject.logout();
         }
-        String userId=JwtTokenUtil.getUserId(accessToken);
+        String userId = JwtTokenUtil.getUserId(accessToken);
 
-        redisService.set(Constant.JWT_REFRESH_TOKEN_BLACKLIST+accessToken,userId,JwtTokenUtil.getRemainingTime(accessToken),TimeUnit.MILLISECONDS);
+        redisService.set(Constant.JWT_REFRESH_TOKEN_BLACKLIST + accessToken, userId, JwtTokenUtil.getRemainingTime(accessToken), TimeUnit.MILLISECONDS);
 
-        redisService.set(Constant.JWT_REFRESH_TOKEN_BLACKLIST+refreshToken,userId,JwtTokenUtil.getRemainingTime(refreshToken),TimeUnit.MILLISECONDS);
+        redisService.set(Constant.JWT_REFRESH_TOKEN_BLACKLIST + refreshToken, userId, JwtTokenUtil.getRemainingTime(refreshToken), TimeUnit.MILLISECONDS);
 
 
-        redisService.delete(Constant.IDENTIFY_CACHE_KEY+userId);
+        redisService.delete(Constant.IDENTIFY_CACHE_KEY + userId);
     }
 
     @Override
-    public void updatePwd(UpdatePasswordReqVO vo,String userId,String accessToken, String refreshToken) {
+    public void updatePwd(UpdatePasswordReqVO vo, String userId, String accessToken, String refreshToken) {
 
-        SysUser sysUser=sysUserMapper.selectByPrimaryKey(userId);
-        if(sysUser==null){
+        SysUser sysUser = sysUserMapper.selectByPrimaryKey(userId);
+        if (sysUser == null) {
             throw new BusinessException(BaseResponseCode.DATA_ERROR);
         }
-        if(!PasswordUtils.matches(sysUser.getSalt(),vo.getOldPwd(),sysUser.getPassword())){
+        if (!PasswordUtils.matches(sysUser.getSalt(), vo.getOldPwd(), sysUser.getPassword())) {
             throw new BusinessException(BaseResponseCode.OLD_PASSWORD_ERROR);
         }
         sysUser.setUpdateTime(new Date());
-        sysUser.setPassword(PasswordUtils.encode(vo.getNewPwd(),sysUser.getSalt()));
+        sysUser.setPassword(PasswordUtils.encode(vo.getNewPwd(), sysUser.getSalt()));
         int i = sysUserMapper.updateByPrimaryKeySelective(sysUser);
-        if(i!=1){
+        if (i != 1) {
             throw new BusinessException(BaseResponseCode.OPERATION_ERRO);
         }
 
-        redisService.set(Constant.JWT_REFRESH_TOKEN_BLACKLIST+accessToken,userId,JwtTokenUtil.getRemainingTime(accessToken),TimeUnit.MILLISECONDS);
+        redisService.set(Constant.JWT_REFRESH_TOKEN_BLACKLIST + accessToken, userId, JwtTokenUtil.getRemainingTime(accessToken), TimeUnit.MILLISECONDS);
 
-        redisService.set(Constant.JWT_REFRESH_TOKEN_BLACKLIST+refreshToken,userId,JwtTokenUtil.getRemainingTime(refreshToken),TimeUnit.MILLISECONDS);
+        redisService.set(Constant.JWT_REFRESH_TOKEN_BLACKLIST + refreshToken, userId, JwtTokenUtil.getRemainingTime(refreshToken), TimeUnit.MILLISECONDS);
 
 
-        redisService.delete(Constant.IDENTIFY_CACHE_KEY+userId);
+        redisService.delete(Constant.IDENTIFY_CACHE_KEY + userId);
 
     }
 
@@ -279,20 +281,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void deletedUsers(List<String> userIds,String operationId) {
-        SysUser sysUser=new SysUser();
+    public void deletedUsers(List<String> userIds, String operationId) {
+        SysUser sysUser = new SysUser();
         sysUser.setUpdateId(operationId);
         sysUser.setUpdateTime(new Date());
         sysUser.setDeleted(0);
-        int i = sysUserMapper.deletedUsers(sysUser,userIds);
-        if (i==0){
+        int i = sysUserMapper.deletedUsers(sysUser, userIds);
+        if (i == 0) {
             throw new BusinessException(BaseResponseCode.OPERATION_ERRO);
         }
 
-        for (String userId:userIds){
-            redisService.set(Constant.DELETED_USER_KEY+userId,userId,tokenSettings.getRefreshTokenExpireAppTime().toMillis(),TimeUnit.MILLISECONDS);
+        for (String userId : userIds) {
+            redisService.set(Constant.DELETED_USER_KEY + userId, userId, tokenSettings.getRefreshTokenExpireAppTime().toMillis(), TimeUnit.MILLISECONDS);
             //清空权鉴缓存
-            redisService.delete(Constant.IDENTIFY_CACHE_KEY+userId);
+            redisService.delete(Constant.IDENTIFY_CACHE_KEY + userId);
         }
 
     }
@@ -301,7 +303,7 @@ public class UserServiceImpl implements UserService {
     public UserOwnRoleRespVO getUserOwnRole(String userId) {
         List<String> roleIdsByUserId = userRoleService.getRoleIdsByUserId(userId);
         List<SysRole> list = roleService.selectAllRoles();
-        UserOwnRoleRespVO vo=new UserOwnRoleRespVO();
+        UserOwnRoleRespVO vo = new UserOwnRoleRespVO();
         vo.setAllRole(list);
         vo.setOwnRoles(roleIdsByUserId);
         return vo;
@@ -310,17 +312,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public void setUserOwnRole(String userId, List<String> roleIds) {
         userRoleService.removeByUserId(userId);
-        if(null!=roleIds&&!roleIds.isEmpty()){
+        if (null != roleIds && !roleIds.isEmpty()) {
 
-            UserRoleOperationReqVO reqVO=new UserRoleOperationReqVO();
+            UserRoleOperationReqVO reqVO = new UserRoleOperationReqVO();
             reqVO.setUserId(userId);
             reqVO.setRoleIds(roleIds);
             userRoleService.addUserRoleInfo(reqVO);
         }
 
 
-        redisService.set(Constant.JWT_REFRESH_KEY+userId,userId,tokenSettings.getAccessTokenExpireTime().toMillis(), TimeUnit.MILLISECONDS);
+        redisService.set(Constant.JWT_REFRESH_KEY + userId, userId, tokenSettings.getAccessTokenExpireTime().toMillis(), TimeUnit.MILLISECONDS);
         //清空权鉴缓存
-        redisService.delete(Constant.IDENTIFY_CACHE_KEY+userId);
+        redisService.delete(Constant.IDENTIFY_CACHE_KEY + userId);
     }
 }

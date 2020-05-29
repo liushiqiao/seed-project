@@ -6,9 +6,9 @@ import lombok.Data;
 /**
  * @ClassName: RolePageReqVO
  * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/20 0:34
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/20 0:34
  * @Version: 0.0.1
  */

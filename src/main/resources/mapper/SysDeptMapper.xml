@@ -175,7 +175,7 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <!-- @Description:     维护Relation_code 的层级关系-->
-  <!-- @Author:          小霍-->
+  <!-- @Author:          lsq-->
   <!-- @CreateDate:      2019/9/19 14:57 -->
   <update id="updateRelationCode">
     UPDATE sys_dept

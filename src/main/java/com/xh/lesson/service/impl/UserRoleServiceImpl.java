@@ -18,9 +18,9 @@ import java.util.UUID;
 /**
  * @ClassName: UserRoleServiceImpl
  * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/19 11:42
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/19 11:42
  * @Version: 0.0.1
  */

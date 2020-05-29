@@ -30,9 +30,9 @@ import java.util.concurrent.TimeUnit;
 /**
  * @ClassName: PermissionServiceImpl
  * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/19 11:40
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/19 11:40
  * @Version: 0.0.1
  */
@@ -54,7 +54,7 @@ public class PermissionServiceImpl implements PermissionService {
      * 先查出用户拥有的角色
      * 再去差用户拥有的权限
      * 也可以多表关联查询
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/20 11:42
      * @UpdateUser:
      * @UpdateDate:  2019/9/20 11:42
@@ -78,7 +78,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
     /**
      * 新增菜单权限
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/20 12:24
      * @UpdateUser:
      * @UpdateDate:  2019/9/20 12:24
@@ -144,7 +144,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
     /**
      * 编辑或者新增的时候检验
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/10/31 21:22
      * @UpdateUser:
      * @UpdateDate:  2019/10/31 21:22
@@ -169,7 +169,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
     /**
      * 查询菜单权限详情
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/20 14:05
      * @UpdateUser:
      * @UpdateDate:  2019/9/20 14:05
@@ -185,7 +185,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
     /**
      * 更新菜单权限
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/20 14:04
      * @UpdateUser:
      * @UpdateDate:  2019/9/20 14:04
@@ -240,7 +240,7 @@ public class PermissionServiceImpl implements PermissionService {
      * 删除菜单权限
      * 判断是否 有角色关联
      * 判断是否有子集
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/20 14:04
      * @UpdateUser:
      * @UpdateDate:  2019/9/20 14:04
@@ -286,7 +286,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
     /**
      * 分页获取所有菜单权限
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/20 14:03
      * @UpdateUser:
      * @UpdateDate:  2019/9/20 14:03
@@ -304,7 +304,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
     /**
      * 获取所有菜单权限
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/20 14:03
      * @UpdateUser:
      * @UpdateDate:  2019/9/20 14:03
@@ -328,7 +328,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
     /**
      * 获取权限标识
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/20 23:13
      * @UpdateUser:
      * @UpdateDate:  2019/9/20 23:13
@@ -355,7 +355,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
     /**
      * 以树型的形式把用户拥有的菜单权限返回给客户端
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/23 10:53
      * @UpdateUser:
      * @UpdateDate:  2019/9/23 10:53
@@ -371,7 +371,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
     /**
      * 递归获取菜单树
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/10/27 18:27
      * @UpdateUser:
      * @UpdateDate:  2019/10/27 18:27
@@ -405,7 +405,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
     /**
      * 递归遍历所有
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/10/25 16:51
      * @UpdateUser:
      * @UpdateDate:  2019/10/25 16:51
@@ -431,7 +431,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
     /**
      * 只递归获取目录和菜单
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/10/25 16:51
      * @UpdateUser:
      * @UpdateDate:  2019/10/25 16:51
@@ -457,7 +457,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
     /**
      * 获取所有菜单权限按钮
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/10/27 18:29
      * @UpdateUser:
      * @UpdateDate:  2019/10/27 18:29
@@ -479,7 +479,7 @@ public class PermissionServiceImpl implements PermissionService {
      * 都不可能选择到按钮
      * 而且编辑的时候 所属目录不能
      * 选择自己和它的子类
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/10/31 13:08
      * @UpdateUser:
      * @UpdateDate:  2019/10/31 13:08

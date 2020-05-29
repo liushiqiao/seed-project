@@ -8,9 +8,9 @@ import java.util.List;
 /**
 * @ClassName:       PageUtils
 *                   分页工具类
-* @Author:          小霍
+* @Author:          lsq
 * @CreateDate:      2019/9/19 13:26
-* @UpdateUser:      小霍
+* @UpdateUser:      lsq
 * @UpdateDate:      2019/9/19 13:26
 * @Version:         0.0.1
 */

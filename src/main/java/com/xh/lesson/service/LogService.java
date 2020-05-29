@@ -9,9 +9,9 @@ import java.util.List;
 /**
  * @ClassName: LogService
  * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/23 16:17
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/23 16:17
  * @Version: 0.0.1
  */

@@ -16,7 +16,7 @@ public class HttpContextUtils {
 	}
 	/**
 	 * 判断是否是 ajax/app请求
-	 * @Author:      小霍
+	 * @Author:      lsq
 	 * @CreateDate:  2019/11/6 14:42
 	 * @UpdateUser:
 	 * @UpdateDate:  2019/11/6 14:42

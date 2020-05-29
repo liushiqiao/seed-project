@@ -8,9 +8,9 @@ import javax.validation.constraints.NotBlank;
 /**
  * @ClassName: DeptUpdateReqVO
  * 更新 组织
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/19 14:04
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/19 14:04
  * @Version: 0.0.1
  */

@@ -9,9 +9,9 @@ import java.util.List;
 /**
  * @ClassName: UserOwnRoleRespVO
  * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/11/3 21:50
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/11/3 21:50
  * @Version: 0.0.1
  */

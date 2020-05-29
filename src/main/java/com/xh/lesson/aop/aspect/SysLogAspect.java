@@ -34,7 +34,7 @@ public class SysLogAspect {
     private SysLogMapper sysLogMapper;
     /**
      * 此处的切点是注解的方式
-     * 只要出现 @LogAnnotation注解都会进入
+     * 只要出现 @LogAnnotation注解都会进入（现在是主要记录controller层的日志）
      */
     @Pointcut("@annotation(com.xh.lesson.aop.annotation.LogAnnotation)")
     public void logPointCut(){
@@ -66,7 +66,7 @@ public class SysLogAspect {
     }
     /**
      * 把日志保存
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/10/7 14:32
      * @UpdateUser:
      * @UpdateDate:  2019/10/7 14:32

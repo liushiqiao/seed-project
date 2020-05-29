@@ -16,9 +16,9 @@ import java.util.concurrent.TimeUnit;
 /**
  * @ClassName: RedisCache
  * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/6 13:53
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/6 13:53
  * @Version: 0.0.1
  */

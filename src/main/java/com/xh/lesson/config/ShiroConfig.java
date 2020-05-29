@@ -25,10 +25,10 @@ import java.util.Map;
 
 /**
  * @ClassName: ShiroConfig
- * TODO:类文件简单描述
- * @Author: 小霍
+ * @desc    shiro配置文件
+ * @Author: lsq
  * @CreateDate: 2019/9/7 13:31
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/7 13:31
  * @Version: 0.0.1
  */
@@ -67,7 +67,7 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager){
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
-        //自定义拦截器限制并发人数,参考博客：
+        //自定义拦截器限制并发人数
         LinkedHashMap<String, Filter> filtersMap = new LinkedHashMap<>();
         //用来校验token
         filtersMap.put("token", new CustomAccessControlFilter());
@@ -103,7 +103,7 @@ public class ShiroConfig {
     /**
      * 开启shiro aop注解支持.
      * 使用代理方式;所以需要开启代码支持;
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/19 10:50
      * @UpdateUser:
      * @UpdateDate:  2019/9/19 10:50

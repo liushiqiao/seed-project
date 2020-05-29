@@ -25,9 +25,9 @@ import java.util.List;
 /**
  * @ClassName: DeptController
  * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/19 11:37
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/19 11:37
  * @Version: 0.0.1
  */
@@ -43,9 +43,7 @@ public class DeptController {
     @LogAnnotation(title = "机构管理",action = "新增组织")
     @RequiresPermissions("sys:dept:add")
     public DataResult<SysDept> addDept(@RequestBody @Valid DeptAddReqVO vo){
-        DataResult<SysDept> result=DataResult.success();
-        result.setData(deptService.addDept(vo));
-        return result;
+        return DataResult.success(deptService.addDept(vo));
     }
     @DeleteMapping("/dept/{id}")
     @ApiOperation(value = "删除组织接口")
@@ -68,27 +66,21 @@ public class DeptController {
     @LogAnnotation(title = "机构管理",action = "查询组织详情")
     @RequiresPermissions("sys:dept:detail")
     public DataResult<SysDept> detailInfo(@PathVariable("id") String id){
-        DataResult<SysDept> result=DataResult.success();
-        result.setData(deptService.detailInfo(id));
-        return result;
+        return DataResult.success(deptService.detailInfo(id));
     }
     @PostMapping("/depts")
     @ApiOperation(value = "分页获取组织信息接口")
     @LogAnnotation(title = "机构管理",action = "分页获取组织信息")
     @RequiresPermissions("sys:dept:list")
     public DataResult<PageVO<SysDept>> pageInfo(@RequestBody DeptPageReqVO vo){
-        DataResult<PageVO<SysDept>> result=DataResult.success();
-        result.setData(deptService.pageInfo(vo));
-        return result;
+        return DataResult.success(deptService.pageInfo(vo));
     }
     @GetMapping("/dept/tree")
     @ApiOperation(value = "树型组织列表接口")
     @LogAnnotation(title = "机构管理",action = "树型组织列表")
     @RequiresPermissions(value = {"sys:user:update","sys:user:add","sys:dept:add","sys:dept:update"},logical = Logical.OR)
     public DataResult<List<DeptRespNodeVO>> getTree(@RequestParam(required = false) String deptId){
-        DataResult<List<DeptRespNodeVO>> result=DataResult.success();
-        result.setData(deptService.deptTreeList(deptId));
-        return result;
+        return DataResult.success(deptService.deptTreeList(deptId));
     }
 
     @PostMapping("/dept/users")
@@ -96,10 +88,7 @@ public class DeptController {
     @LogAnnotation(title = "机构管理",action = "分页获取组织下所有用户")
     @RequiresPermissions("sys:dept:user:list")
     public DataResult<PageVO<SysUser>> pageDeptUserInfos(@RequestBody @Valid UserPageUserByDeptReqVO vo){
-        DataResult<PageVO<SysUser>> result=DataResult.success();
-        result.setData(deptService.pageDeptUserInfo(vo));
-        System.out.println("fsdfds");
-        return result;
+        return DataResult.success(deptService.pageDeptUserInfo(vo));
     }
 
     @GetMapping("/depts")
@@ -107,8 +96,6 @@ public class DeptController {
     @LogAnnotation(title = "机构管理",action = "获取所有组织机构")
     @RequiresPermissions("sys:dept:list")
     public DataResult<List<SysDept>> getDeptAll(){
-        DataResult<List<SysDept>> result=DataResult.success();
-        result.setData(deptService.selectAll());
-        return result;
+        return DataResult.success(deptService.selectAll());
     }
 }

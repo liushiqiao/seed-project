@@ -11,12 +11,12 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * @ClassName: RedisConfig
- * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/6 13:42
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/6 13:42
  * @Version: 0.0.1
+ * @desc    配置redis调用客户端对象
  */
 @Configuration
 public class RedisConfig {

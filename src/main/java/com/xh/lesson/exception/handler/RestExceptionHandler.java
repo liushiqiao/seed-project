@@ -16,9 +16,9 @@ import java.util.List;
 /**
  * @ClassName: RestExceptionHandler
  * controller 层全局异常统一处理类
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/4 15:55
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/4 15:55
  * @Version: 0.0.1
  */
@@ -28,7 +28,7 @@ public class RestExceptionHandler {
 
     /**
      * 系统繁忙，请稍候再试"
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/4 23:25
      * @UpdateUser:
      * @UpdateDate:  2019/9/4 23:25
@@ -45,7 +45,7 @@ public class RestExceptionHandler {
 
     /**
      * 自定义全局异常处理
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/4 16:39
      * @UpdateUser:
      * @UpdateDate:  2019/9/4 16:39
@@ -61,7 +61,7 @@ public class RestExceptionHandler {
     }
     /**
      * 没有权限 返回403视图
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/10/29 15:14
      * @UpdateUser:
      * @UpdateDate:  2019/10/29 15:14

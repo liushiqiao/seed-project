@@ -25,10 +25,9 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @ClassName: CustomRealm
- * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/6 18:02
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/6 18:02
  * @Version: 0.0.1
  */

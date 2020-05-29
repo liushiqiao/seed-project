@@ -23,9 +23,9 @@ import java.util.List;
 /**
  * @ClassName: PermissionController
  * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/20 14:05
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/20 14:05
  * @Version: 0.0.1
  */
@@ -41,36 +41,30 @@ public class PermissionController {
     @LogAnnotation(title = "菜单权限管理",action = "新增菜单权限")
     @RequiresPermissions("sys:permission:add")
     public DataResult<SysPermission> addPermission(@RequestBody @Valid PermissionAddReqVO vo){
-        DataResult<SysPermission> result=DataResult.success();
-        result.setData(permissionService.addPermission(vo));
-        return result;
+        return DataResult.success(permissionService.addPermission(vo));
     }
     @DeleteMapping("/permission/{id}")
     @ApiOperation(value = "删除菜单权限接口")
     @LogAnnotation(title = "菜单权限管理",action = "删除菜单权限")
     @RequiresPermissions("sys:permission:deleted")
     public DataResult deleted(@PathVariable("id") String id){
-        DataResult result=DataResult.success();
         permissionService.deleted(id);
-        return result;
+        return DataResult.success();
     }
     @PutMapping("/permission")
     @ApiOperation(value = "更新菜单权限接口")
     @LogAnnotation(title = "菜单权限管理",action = "更新菜单权限")
     @RequiresPermissions("sys:permission:update")
     public DataResult updatePermission(@RequestBody @Valid PermissionUpdateReqVO vo){
-        DataResult result=DataResult.success();
         permissionService.updatePermission(vo);
-        return result;
+        return DataResult.success();
     }
     @GetMapping("/permission/{id}")
     @ApiOperation(value = "查询菜单权限接口")
     @LogAnnotation(title = "菜单权限管理",action = "查询菜单权限")
     @RequiresPermissions("sys:permission:detail")
     public DataResult<SysPermission> detailInfo(@PathVariable("id") String id){
-        DataResult<SysPermission> result=DataResult.success();
-        result.setData(permissionService.detailInfo(id));
-        return result;
+        return DataResult.success(permissionService.detailInfo(id));
     }
 
     @PostMapping("/permissions")
@@ -78,9 +72,7 @@ public class PermissionController {
     @LogAnnotation(title = "菜单权限管理",action = "分页查询菜单权限")
     @RequiresPermissions("sys:permission:list")
     public DataResult<PageVO<SysPermission>> pageInfo(@RequestBody PermissionPageReqVO vo){
-        DataResult<PageVO<SysPermission>> result=DataResult.success();
-        result.setData(permissionService.pageInfo(vo));
-        return result;
+        return DataResult.success(permissionService.pageInfo(vo));
 
     }
     @GetMapping("/permissions")
@@ -88,19 +80,14 @@ public class PermissionController {
     @LogAnnotation(title = "菜单权限管理",action = "获取所有菜单权限")
     @RequiresPermissions("sys:permission:list")
     public DataResult<List<SysPermission>> getAllMenusPermission(){
-        System.out.println("fsfs89896666666");
-        DataResult<List<SysPermission>> result=DataResult.success();
-        result.setData(permissionService.selectAll());
-        return result;
+        return DataResult.success(permissionService.selectAll());
     }
     @GetMapping("/permission/tree")
     @ApiOperation(value = "获取所有目录菜单树接口")
     @LogAnnotation(title = "菜单权限管理",action = "获取所有目录菜单树")
     @RequiresPermissions(value = {"sys:permission:update","sys:permission:add"},logical = Logical.OR)
     public DataResult<List<PermissionRespNode>> getAllMenusPermissionTree(@RequestParam(required = false) String permissionId){
-        DataResult<List<PermissionRespNode>> result=DataResult.success();
-        result.setData(permissionService.selectAllMenuByTree(permissionId));
-        return result;
+        return DataResult.success(permissionService.selectAllMenuByTree(permissionId));
     }
 
     @GetMapping("/permission/tree/all")
@@ -108,8 +95,6 @@ public class PermissionController {
     @LogAnnotation(title = "菜单权限管理",action = "获取所有目录菜单树")
     @RequiresPermissions(value = {"sys:role:update","sys:role:add"},logical = Logical.OR)
     public DataResult<List<PermissionRespNode>> getAllPermissionTree(){
-        DataResult<List<PermissionRespNode>> result=DataResult.success();
-        result.setData(permissionService.selectAllByTree());
-        return result;
+        return DataResult.success(permissionService.selectAllByTree());
     }
 }

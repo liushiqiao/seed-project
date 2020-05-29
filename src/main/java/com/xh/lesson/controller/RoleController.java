@@ -20,9 +20,9 @@ import javax.validation.Valid;
 /**
  * @ClassName: RoleController
  * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/19 11:37
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/19 11:37
  * @Version: 0.0.1
  */
@@ -38,9 +38,7 @@ public class RoleController {
     @LogAnnotation(title = "角色管理",action = "新增角色")
     @RequiresPermissions("sys:role:add")
     public DataResult<SysRole> addRole(@RequestBody @Valid RoleAddReqVO vo){
-        DataResult<SysRole> result=DataResult.success();
-        result.setData(roleService.addRole(vo));
-        return result;
+        return DataResult.success(roleService.addRole(vo));
     }
     @DeleteMapping("/role/{id}")
     @ApiOperation(value = "删除角色接口")
@@ -63,18 +61,14 @@ public class RoleController {
     @LogAnnotation(title = "角色管理",action = "查询角色详情")
     @RequiresPermissions("sys:role:detail")
     public DataResult<SysRole> detailInfo(@PathVariable("id") String id){
-        DataResult<SysRole> result=DataResult.success();
-        result.setData(roleService.detailInfo(id));
-        return result;
+        return DataResult.success(roleService.detailInfo(id));
     }
     @PostMapping("/roles")
     @ApiOperation(value = "分页获取角色信息接口")
     @LogAnnotation(title = "角色管理",action = "分页获取角色信息")
     @RequiresPermissions("sys:role:list")
     public DataResult<PageVO<SysRole>> pageInfo(@RequestBody RolePageReqVO vo){
-        DataResult<PageVO<SysRole>> result=DataResult.success();
-        result.setData(roleService.pageInfo(vo));
-        return result;
+        return DataResult.success(roleService.pageInfo(vo));
     }
 
 }

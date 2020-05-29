@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @ClassName: HomeController
  * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/10/25 21:20
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/10/25 21:20
  * @Version: 0.0.1
  */

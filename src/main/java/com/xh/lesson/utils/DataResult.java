@@ -8,9 +8,9 @@ import lombok.Data;
 /**
  * @ClassName: DataResult
  * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/3 18:02
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/3 18:02
  * @Version: 0.0.1
  */
@@ -79,7 +79,7 @@ public class DataResult <T>{
     }
     /**
      * 操作成功 data为null
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/4 23:08
      * @UpdateUser:
      * @UpdateDate:  2019/9/4 23:08
@@ -93,7 +93,7 @@ public class DataResult <T>{
     }
     /**
      * 操作成功 data 不为null
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/4 23:09
      * @UpdateUser:
      * @UpdateDate:  2019/9/4 23:09
@@ -107,7 +107,7 @@ public class DataResult <T>{
     }
     /**
      * 自定义 返回操作 data 可控
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/4 23:15
      * @UpdateUser:
      * @UpdateDate:  2019/9/4 23:15
@@ -123,7 +123,7 @@ public class DataResult <T>{
     }
     /**
      *  自定义返回  data为null
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/4 23:15
      * @UpdateUser:
      * @UpdateDate:  2019/9/4 23:15
@@ -138,7 +138,7 @@ public class DataResult <T>{
     }
     /**
      * 自定义返回 入参一般是异常code枚举 data为空
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/4 23:16
      * @UpdateUser:
      * @UpdateDate:  2019/9/4 23:16
@@ -152,7 +152,7 @@ public class DataResult <T>{
     }
     /**
      * 自定义返回 入参一般是异常code枚举 data 可控
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/4 23:16
      * @UpdateUser:
      * @UpdateDate:  2019/9/4 23:16

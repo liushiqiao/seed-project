@@ -3,9 +3,9 @@ package com.xh.lesson.utils;
 /**
  * @ClassName: CodeUtil
  * 编码工具类
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/19 11:42
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/19 11:42
  * @Version: 0.0.1
  */
@@ -34,7 +34,7 @@ public class CodeUtil {
     }
     /**
      * 获取机构编码 YXD0001
-     * @Author:      小霍
+     * @Author:      lsq
      * @CreateDate:  2019/9/19 12:06
      * @UpdateUser:
      * @UpdateDate:  2019/9/19 12:06

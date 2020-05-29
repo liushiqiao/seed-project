@@ -20,9 +20,9 @@ import java.util.List;
 /**
  * @ClassName: SwaggerConfig
  * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/4 11:03
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/4 11:03
  * @Version: 0.0.1
  */
@@ -61,8 +61,8 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("迎学教育")
-                .description("迎学教育-spring boot 实战系列")
+                .title("种子系统")
+                .description("种子系统")
                 .termsOfServiceUrl("")
                 .version("1.0")
                 .build();

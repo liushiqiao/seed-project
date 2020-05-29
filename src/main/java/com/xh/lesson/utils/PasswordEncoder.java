@@ -8,9 +8,9 @@ import java.util.UUID;
 /**
 * @ClassName:       PasswordEncoder
 *                   密码加密
-* @Author:          小霍
+* @Author:          lsq
 * @CreateDate:      2019/9/7 13:45
-* @UpdateUser:      小霍
+* @UpdateUser:      lsq
 * @UpdateDate:      2019/9/7 13:45
 * @Version:         0.0.1
 */

@@ -18,9 +18,9 @@ import java.util.List;
 /**
  * @ClassName: SysLogController
  * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/23 16:15
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/23 16:15
  * @Version: 0.0.1
  */
@@ -38,9 +38,7 @@ public class SysLogController {
     @RequiresPermissions("sys:log:list")
     public DataResult<PageVO<SysLog>> pageInfo(@RequestBody SysLogPageReqVO vo){
         PageVO<SysLog> sysLogPageVO = logService.pageInfo(vo);
-        DataResult<PageVO<SysLog>> result=DataResult.success();
-        result.setData(sysLogPageVO);
-        return result;
+        return DataResult.success(sysLogPageVO);
     }
 
     @DeleteMapping("/logs")

@@ -7,9 +7,9 @@ import java.util.List;
 /**
 * @ClassName:       PageVO
 *                   分页VO
-* @Author:          小霍
+* @Author:          lsq
 * @CreateDate:      2019/9/19 13:25
-* @UpdateUser:      小霍
+* @UpdateUser:      lsq
 * @UpdateDate:      2019/9/19 13:25
 * @Version:         0.0.1
 */

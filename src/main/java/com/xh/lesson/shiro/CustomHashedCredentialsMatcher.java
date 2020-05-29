@@ -5,7 +5,6 @@ import com.xh.lesson.exception.BusinessException;
 import com.xh.lesson.exception.code.BaseResponseCode;
 import com.xh.lesson.service.RedisService;
 import com.xh.lesson.utils.JwtTokenUtil;
-import com.xh.lesson.utils.TokenSettings;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
@@ -15,10 +14,9 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @ClassName: CustomHashedCredentialsMatcher
- * TODO:类文件简单描述
- * @Author: 小霍
+ * @Author: lsq
  * @CreateDate: 2019/9/7 13:42
- * @UpdateUser: 小霍
+ * @UpdateUser: lsq
  * @UpdateDate: 2019/9/7 13:42
  * @Version: 0.0.1
  */
