@@ -1,6 +1,7 @@
 package com.xh.lesson.utils;
 
 import com.xh.lesson.constants.Constant;
+import io.jsonwebtoken.ClaimJwtException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -192,7 +193,7 @@ public class JwtTokenUtil {
         try {
             claims = Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(secretKey)).parseClaimsJws(token).getBody();
         } catch (Exception e) {
-            claims = null;
+            claims=((ClaimJwtException) e).getClaims();
         }
         return claims;
     }
